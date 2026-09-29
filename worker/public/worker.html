@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trabajador - Jenifer</title>
+    <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+
+    <h1>
+        Trabajador:
+        <span class="tag seguidor" id="workerIdBadge">JENIFER</span>
+    </h1>
+
+    <div class="grid">
+        <div class="box">
+            <p>Nodo Objetivo Actual</p>
+            <span id="coordUrlDisplay" class="url-text">Sin conectar</span>
+        </div>
+        <div class="box">
+            <p>Estado de Red</p>
+            <span>
+                <span class="status-dot" id="statusDot"></span>
+                <span id="statusText">Desconectado</span>
+            </span>
+        </div>
+    </div>
+
+    <div class="panel">
+        <h2>Conexión al Coordinador</h2>
+        <p class="subtitle" style="margin-bottom: 12px;">Ingresa la URL pública de ngrok para unirte a la red.</p>
+        <div class="form-group">
+            <input
+                type="text"
+                id="coordUrlInput"
+                placeholder="https://xxxx.ngrok-free.app"
+            />
+            <button id="connectBtn">Conectar</button>
+            <button class="btn-gray" id="disconnectBtn">Desconectar</button>
+        </div>
+    </div>
+
+    <div class="panel">
+        <h2>Enviar Tarea </h2>
+        <textarea
+            id="messageInput"
+            placeholder="Escribe tarea o mensaje..."
+        ></textarea>
+        
+        <div class="message-status" id="messageStatus"></div>
+
+        <button id="sendBtn">Enviar Mensaje</button>
+    </div>
+
+    <div class="panel">
+        <h2>Tareas Recibidas</h2>
+        <table class="tasks-table">
+            <thead>
+                <tr>
+                    <th>ID de tarea</th>
+                    <th>Capacidad</th>
+                    <th>Estado</th>
+                    <th>Tiempo</th>
+                </tr>
+            </thead>
+            <tbody id="tasksBody">
+                <tr><td colspan="4" class="empty-list-item">Sin tareas todavía</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="panel">
+        <h2>Registro del Sistema (Logs)</h2>
+        <div class="logs" id="logsBox">
+            <div class="title">--- Registro del Trabajador ---</div>
+        </div>
+        <p class="refresh-note" style="margin-top: 8px;">Sincronizado automáticamente</p>
+    </div>
+
+    <script src="js/mainw.js"></script>
+</body>
+
+</html>

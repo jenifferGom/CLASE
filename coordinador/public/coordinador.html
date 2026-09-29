@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coordinador Dashboard</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+
+    <h1 id="headerNodeName">
+        Coordinador Node
+    </h1>
+
+    <p class="subtitle">
+        Estado de la elección en tiempo real
+    </p>
+
+    <!-- ESTADO -->
+
+    <!-- ESTADO -->
+
+    <div class="status-grid">
+        <div class="status-card">
+            <span class="label">Nodo Local</span>
+            <span id="sName" class="value">—</span>
+        </div>
+
+        <div class="status-card">
+            <span class="label">Rol</span>
+            <span id="sRole" class="value tag follower">—</span>
+        </div>
+
+        <div class="status-card">
+            <span class="label">Líder Actual</span>
+            <span id="sLeader" class="value">—</span>
+        </div>
+
+        <div class="status-card">
+            <span class="label">URL del Líder</span>
+            <span id="sLeaderUrl" class="value url-text">—</span>
+        </div>
+    </div>
+
+    <!--PEERS-->
+
+    <div class="panel">
+        <h2>Lista de Peers</h2>
+        <ul id="peersList">
+            <li>Cargando peers...</li>
+        </ul>
+    </div>
+
+    <!-- AGREGAR PEER -->
+
+    <div class="panel">
+        <h2>Agregar Peer Manualmente</h2>
+        <form id="addPeerForm" class="form-group">
+            <input type="text" id="peerUrlInput" placeholder="https://ejemplo.ngrok-free.dev" required>
+            <button type="submit">Conectar Peer</button>
+        </form>
+    </div>
+
+    <!--WORKERS-->
+
+    <div class="panel">
+        <h2>Workers Conectados</h2>
+        <ul id="workersList">
+            <li>Cargando workers...</li>
+        </ul>
+    </div>
+
+    <!--ENVIAR TAREA -->
+    <div class="panel">
+        <h2>Enviar Tarea</h2>
+        <form id="sendTaskForm" class="form-group">
+            <select id="taskWorkerSelect">
+                <option value="">Cualquier worker disponible</option>
+            </select>
+            <select id="taskTypeSelect">
+                <option value="">Selecciona capacidad</option>
+            </select>
+
+            <!-- Los campos del payload se generan según la capacidad elegida -->
+            <div id="taskPayloadFields" class="payload-fields">
+                <p class="hint-text">Selecciona una capacidad para ver los campos.</p>
+            </div>
+
+            <button type="submit">Enviar Tarea</button>
+        </form>
+        <p id="taskFeedback" class="feedback-text"></p>
+    </div>
+
+    <!--TAREAS ENVIADAS -->
+    <div class="panel">
+        <h2>Tareas</h2>
+        <div class="table-wrapper">
+            <table class="tasks-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Worker</th>
+                        <th>Tipo</th>
+                        <th>Estado</th>
+                        <th>Resultado</th>
+                    </tr>
+                </thead>
+                <tbody id="tasksBody">
+                    <tr>
+                        <td colspan="5" class="empty-list-item">Cargando tareas...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Carga del JavaScript separado -->
+    <script src="js/mainc.js"></script>
+</body>
+
+</html>

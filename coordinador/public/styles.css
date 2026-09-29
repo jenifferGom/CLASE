@@ -1,0 +1,447 @@
+/* ===== estilos de coordinador.html ===== */
+
+:root {
+  --blush: #f0c4cb;
+  --antique-rose: #c87d87;
+  --champagne: #fbead6;
+  --dried-thyme: #6b7556;
+  --bisque: #e5bca9;
+
+  --bg-primary: #fbead6;
+  --bg-secondary: #ffffff;
+  --border-color: #e5bca9;
+
+  --text-main: #3d3d3d;
+  --text-muted: #6b7556;
+  --text-light: #8a7a72;
+  --text-white: #ffffff;
+
+  --primary: #c87d87;
+  --primary-hover: #b06872;
+  --accent: #c87d87;
+
+  --tag-lider-bg: #d1e7dd;
+  --tag-lider-text: #0f5132;
+  --tag-lider-border: #badbcc;
+
+  --tag-seguidor-bg: #cff4fc;
+  --tag-seguidor-text: #055160;
+  --tag-seguidor-border: #b6effb;
+
+  --tag-candidato-bg: #fff3cd;
+  --tag-candidato-text: #664d03;
+  --tag-candidato-border: #ffecb5;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-main);
+  padding: 28px 36px;
+  max-width: 1100px;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+h1 {
+  color: var(--primary);
+  font-size: 24px;
+  border-bottom: 2px solid var(--primary);
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.subtitle {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 22px;
+}
+
+/* --- Tarjetas de estado (Nodo local, Rol, Líder, URL) --- */
+.status-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 25px;
+}
+
+.status-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 18px 12px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+
+.status-card .label {
+  display: block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-light);
+  font-weight: 600;
+}
+
+.status-card .value {
+  display: block;
+  font-size: 15px;
+  font-weight: bold;
+  color: var(--text-main);
+  word-break: break-all;
+}
+
+.url-text {
+  font-size: 12px !important;
+  color: var(--text-muted) !important;
+  font-weight: normal !important;
+}
+
+/* Etiquetas de Rol */
+.tag {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: capitalize;
+  border: 1px solid transparent;
+}
+
+.tag.follower, .tag.seguidor {
+  background-color: var(--tag-seguidor-bg);
+  color: var(--tag-seguidor-text);
+  border-color: var(--tag-seguidor-border);
+}
+
+.tag.leader, .tag.lider {
+  background-color: var(--tag-lider-bg);
+  color: var(--tag-lider-text);
+  border-color: var(--tag-lider-border);
+}
+
+.tag.candidate, .tag.candidato {
+  background-color: var(--tag-candidato-bg);
+  color: var(--tag-candidato-text);
+  border-color: var(--tag-candidato-border);
+}
+
+@media (max-width: 800px) {
+  .status-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* --- Paneles --- */
+.panel {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 25px;
+}
+
+.panel h2 {
+  font-size: 16px;
+  color: var(--primary);
+  margin-bottom: 14px;
+}
+
+button {
+  background: var(--primary);
+  color: var(--text-white);
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s ease, opacity 0.2s ease;
+}
+
+button:hover:not(:disabled) {
+  background: var(--primary-hover);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-gray {
+  background: #8a7a72;
+}
+
+.btn-gray:hover:not(:disabled) {
+  background: #6f615a;
+}
+
+/* --- Lista de peers y workers --- */
+#peersList, #workersList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.empty-list-item {
+  padding: 10px;
+  color: #a07865;
+  font-style: italic;
+}
+
+.peer-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+}
+
+.peer-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.peer-id {
+  font-weight: bold;
+  color: var(--text-main);
+  font-size: 0.95rem;
+}
+
+.peer-url {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  word-break: break-all;
+}
+
+.status-badge {
+  font-size: 0.78rem;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+.status-badge.online {
+  background-color: #d1e7dd;
+  color: #0f5132;
+}
+
+.status-badge.offline {
+  background-color: var(--blush);
+  color: #842029;
+}
+
+/* --- Formulario de envío de tareas --- */
+.form-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+input[type="text"], select, textarea {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  padding: 10px 12px;
+  border-radius: 6px;
+  outline: none;
+  font-family: inherit;
+}
+
+.form-group select,
+.form-group input[type="text"] {
+  flex: 1 1 calc(50% - 6px);
+  min-width: 200px;
+}
+
+input[type="text"]:focus, select:focus, textarea:focus {
+  border-color: var(--primary);
+}
+
+.form-group textarea {
+  width: 100%;
+  flex: 1 0 100%;
+  min-height: 90px;
+  resize: vertical;
+  margin-bottom: 0;
+  font-family: monospace;
+  font-size: 14px;
+}
+
+.form-group button {
+  margin-left: auto;
+  flex: 0 0 auto;
+}
+
+.feedback-text {
+  margin-top: 10px;
+  font-size: 13px;
+  font-weight: bold;
+  width: 100%;
+}
+
+.feedback-text.success { color: #0f5132; }
+.feedback-text.error   { color: #842029; }
+
+.refresh-note {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-align: right;
+}
+
+.message-status {
+  min-height: 20px;
+  margin-bottom: 12px;
+  font-size: 14px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* --- Consola de logs --- */
+.logs {
+  background: #2b2627;
+  color: #fbead6;
+  border-radius: 8px;
+  padding: 16px;
+  min-height: 200px;
+  max-height: 320px;
+  overflow-y: auto;
+  font-family: "Courier New", monospace;
+  font-size: 13px;
+  line-height: 1.5;
+  border: 1px solid var(--border-color);
+}
+
+.logs .title {
+  color: var(--bisque);
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+/* ===== Campos dinámicos del payload ===== */
+.payload-fields {
+  width: 100%;
+  flex: 1 0 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.field-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* Anula las reglas de .form-group (flex-basis de 50%) dentro de los campos */
+.form-group .field-group input[type="text"],
+.form-group .field-group select,
+.form-group .field-group textarea {
+  flex: none;
+  width: 100%;
+  min-width: 0;
+}
+
+.hint-text {
+  font-size: 13px;
+  color: var(--text-light);
+  font-style: italic;
+}
+
+/* ===== Tabla de tareas ===== */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.tasks-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.tasks-table th {
+  text-align: left;
+  padding: 10px 12px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-light);
+  border-bottom: 2px solid var(--border-color);
+}
+
+.tasks-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border-color);
+  vertical-align: top;
+}
+
+.tasks-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.tasks-table .mono {
+  font-family: "Courier New", monospace;
+  font-size: 12px;
+  word-break: break-all;
+}
+
+/* Estados de tarea */
+.task-status {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  border: 1px solid transparent;
+}
+
+.task-status.queued {
+  background: var(--bg-primary);
+  color: var(--text-light);
+  border-color: var(--border-color);
+}
+
+.task-status.running {
+  background: var(--tag-candidato-bg);
+  color: var(--tag-candidato-text);
+  border-color: var(--tag-candidato-border);
+}
+
+.task-status.done {
+  background: var(--tag-lider-bg);
+  color: var(--tag-lider-text);
+  border-color: var(--tag-lider-border);
+}
+
+.task-status.failed {
+  background: var(--blush);
+  color: #842029;
+  border-color: var(--antique-rose);
+}

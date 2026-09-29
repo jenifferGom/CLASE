@@ -1,0 +1,308 @@
+/* ===== worker.css: estilos de worker.html ===== */
+:root {
+  --blush: #f0c4cb;
+  --antique-rose: #c87d87;
+  --champagne: #fbead6;
+  --dried-thyme: #6b7556;
+  --bisque: #e5bca9;
+
+  --bg-primary: #fbead6;
+  --bg-secondary: #ffffff;
+  --border-color: #e5bca9;
+
+  --text-main: #3d3d3d;
+  --text-muted: #6b7556;
+  --text-light: #8a7a72;
+  --text-white: #ffffff;
+
+  --primary: #c87d87;
+  --primary-hover: #b06872;
+  --accent: #c87d87;
+
+  --tag-lider-bg: #92facb;
+  --tag-lider-text: #0f5132;
+  --tag-lider-border: #badbcc;
+
+  --tag-seguidor-bg: #9ee4f3;
+  --tag-seguidor-text: #055160;
+  --tag-seguidor-border: #b6effb;
+
+  --tag-candidato-bg: #fae9b2;
+  --tag-candidato-text: #664d03;
+  --tag-candidato-border: #ffecb5;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-main);
+  padding: 28px 36px;
+  max-width: 650px;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+h1 {
+  color: var(--primary);
+  font-size: 24px;
+  border-bottom: 2px solid var(--primary);
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.subtitle {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 22px;
+}
+
+.panel {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 25px;
+}
+
+.panel h2 {
+  font-size: 16px;
+  color: var(--primary);
+  margin-bottom: 12px;
+}
+
+button {
+  background: var(--primary);
+  color: var(--text-white);
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s ease, opacity 0.2s ease;
+}
+
+button:hover:not(:disabled) {
+  background: var(--primary-hover);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-gray {
+  background: #8a7a72;
+}
+
+.btn-gray:hover:not(:disabled) {
+  background: #6f615a;
+}
+
+/* --- Tarjetas de estado (grilla de 2 columnas) --- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.box {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.box p {
+  font-size: 11px;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.box span {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--text-main);
+  word-break: break-all;
+}
+
+.url-text {
+  font-size: 12px !important;
+  font-family: monospace;
+  word-break: break-all;
+}
+
+/* --- Rol del nodo --- */
+.tag {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.tag.lider, .tag.líder, .tag.leader {
+  background: var(--tag-lider-bg);
+  color: var(--tag-lider-text);
+  border: 1px solid var(--tag-lider-border);
+}
+
+.tag.seguidor, .tag.follower {
+  background: var(--tag-seguidor-bg);
+  color: var(--tag-seguidor-text);
+  border: 1px solid var(--tag-seguidor-border);
+}
+
+.tag.candidato, .tag.candidate {
+  background: var(--tag-candidato-bg);
+  color: var(--tag-candidato-text);
+  border: 1px solid var(--tag-candidato-border);
+}
+
+/* --- Lista de peers --- */
+#peersList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.empty-list-item {
+  padding: 10px;
+  color: #a07865;
+}
+
+.peer-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+}
+
+.peer-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.peer-id {
+  font-weight: bold;
+  color: var(--text-main);
+  font-size: 0.95rem;
+}
+
+.peer-url {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  word-break: break-all;
+}
+
+.status-badge {
+  font-size: 0.78rem;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+.status-badge.online {
+  background-color: #d1e7dd;
+  color: #0f5132;
+}
+
+.status-badge.offline {
+  background-color: var(--blush);
+  color: #842029;
+}
+
+.status-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 6px;
+  background: #ccc;
+}
+
+.status-dot.on {
+  background: #6b7556;
+}
+
+/* --- Consola de logs --- */
+.logs {
+  background: #2b2627;
+  color: #fbead6;
+  border-radius: 8px;
+  padding: 16px;
+  min-height: 200px;
+  max-height: 320px;
+  overflow-y: auto;
+  font-family: "Courier New", monospace;
+  font-size: 13px;
+  line-height: 1.5;
+  border: 1px solid var(--border-color);
+}
+
+.logs .title {
+  color: var(--bisque);
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+/* --- Tabla de tareas --- */
+.tasks-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.tasks-table th {
+  text-align: left;
+  color: var(--text-light);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 6px 8px;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.tasks-table td {
+  padding: 8px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.tasks-table .mono {
+  font-family: monospace;
+  word-break: break-all;
+}
+
+.task-badge {
+  font-size: 0.75rem;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+.task-badge.running { background: var(--tag-candidato-bg); color: var(--tag-candidato-text); }
+.task-badge.ok      { background: #d1e7dd; color: #0f5132; }
+.task-badge.error   { background: var(--blush); color: #842029; }
