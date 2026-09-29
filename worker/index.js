@@ -4,6 +4,7 @@ const path = require("path");
 require("dotenv").config();
 require("dotenv").config({ path: path.join(__dirname, "../.env") });
 const app = express();
+
 app.use(express.json())
 
 // ============================================================
@@ -102,6 +103,24 @@ function prime_range({ start, end }) {
 }
 
 const CAPABILITIES = { search_text, stats_compute, prime_range }
+
+const CAPABILITY_SCHEMAS = {
+    search_text: {
+        description: "Cuenta cuántas veces aparece un texto dentro de otro",
+        payload: { text: "hola mundo hola", query: "hola" },
+        expectedResult: { count: 2 }
+    },
+    stats_compute: {
+        description: "Calcula promedio, mínimo y máximo de un arreglo de números",
+        payload: { numbers: [1, 2, 3, 4, 5] },
+        expectedResult: { mean: 3, min: 1, max: 5 }
+    },
+    prime_range: {
+        description: "Encuentra los números primos dentro de un rango [start, end]",
+        payload: { start: 1, end: 20 },
+        expectedResult: { primes: [2, 3, 5, 7, 11, 13, 17, 19], count: 8 }
+    }
+}
 
 // LOGS PARA LA UI
 
@@ -227,8 +246,12 @@ async function registrarEnLider(urlCoordinador) {
         const res = await axios.post(
             `${url}/register`,
             {
+                id: NAME,
                 name: NAME,
-                url: MY_URL
+                worker: NAME,
+                url: MY_URL,
+                capabilities: Object.keys(CAPABILITIES),
+                schemas: CAPABILITY_SCHEMAS
             },
             {
                 headers: NGROK_HEADERS,
@@ -603,40 +626,7 @@ app.get("/task/capabilities", (req, res) => {
     res.json({
         worker: NAME,
         capabilities: Object.keys(CAPABILITIES),
-        schemas: {
-            search_text: {
-                description: "Cuenta cuántas veces aparece un texto dentro de otro",
-                payload: {
-                    text: "hola mundo hola",
-                    query: "hola"
-                },
-                expectedResult: {
-                    count: 2
-                }
-            },
-            stats_compute: {
-                description: "Calcula promedio, mínimo y máximo de un arreglo de números",
-                payload: {
-                    numbers: [1, 2, 3, 4, 5]
-                },
-                expectedResult: {
-                    mean: 3,
-                    min: 1,
-                    max: 5
-                }
-            },
-            prime_range: {
-                description: "Encuentra los números primos dentro de un rango [start, end]",
-                payload: {
-                    start: 1,
-                    end: 20
-                },
-                expectedResult: {
-                    primes: [2, 3, 5, 7, 11, 13, 17, 19],
-                    count: 8
-                }
-            }
-        }
+        schemas: CAPABILITY_SCHEMAS
     })
 })
 
